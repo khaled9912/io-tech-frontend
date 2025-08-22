@@ -22,23 +22,11 @@ interface TeamsState {
   teams: ITeamMember[];
   loading: boolean;
   error: string | null;
-  pagination: {
-    page: number;
-    pageSize: number;
-    total: number;
-    pageCount: number;
-  };
 }
 const initialState: TeamsState = {
   teams: [],
   loading: false,
   error: null,
-  pagination: {
-    page: 1,
-    pageSize: 6,
-    total: 0,
-    pageCount: 1,
-  },
 };
 
 const teamsSlice = createSlice({
@@ -54,12 +42,6 @@ const teamsSlice = createSlice({
       .addCase(fetchTeamMembers.fulfilled, (state, action) => {
         state.loading = false;
         state.teams = action.payload;
-        state.pagination = {
-          page: action.payload.meta.page,
-          pageSize: action.payload.meta.pageSize,
-          total: action.payload.meta.total,
-          pageCount: action.payload.meta.pageCount,
-        };
       })
       .addCase(fetchTeamMembers.rejected, (state, action) => {
         state.loading = false;
