@@ -48,7 +48,7 @@ const TeamSection: React.FC = () => {
         </button>
 
         {/* Carousel */}
-        <div className="flex w-full justify-center gap-8 md:flex-row md:overflow-x-auto">
+        <div className="relative flex w-full justify-center gap-8 md:flex-row md:overflow-x-auto">
           {teams.map((member, index) => (
             <div
               key={index}

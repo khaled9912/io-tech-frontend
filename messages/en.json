@@ -30,6 +30,12 @@
     "our-adventages": "Our Advantages",
     "follow-us": "Follow Us",
     "rights": "© 2024. All rights reserved.",
-    "strategy": "Our Strategy"
+    "strategy": "Our Strategy",
+    "subscribe-success": "Subscribed successfully",
+    "something-went-wrong": "Something went wrong",
+    "subscription-failed": "Subscription failed",
+    "enter-your-email": "Enter your email",
+    "subscribing": "Subscribing",
+    "subscribe": "Subscribe"
   }
 }

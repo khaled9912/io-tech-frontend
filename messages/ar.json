@@ -30,6 +30,12 @@
     "our-adventages": "مميزاتنا",
     "follow-us": "تابعنا",
     "rights": "© 2024. جميع الحقوق محفوظة.",
-    "strategy": "استراتيجيتنا"
+    "strategy": "استراتيجيتنا",
+    "subscribed-successfully": "تم الاشتراك بنجاح",
+    "something-went-wrong": "حدث خطأ ما",
+    "subscribtion-failed":"حدث خطأ أثناء الاشتراك",
+    "enter-your-email":"أدخل بريدك الإلكتروني ",
+    "subscribing":"جارٍ الاشتراك",
+    "subscribe":"اشترك"
   }
 }

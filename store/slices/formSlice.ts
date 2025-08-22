@@ -12,8 +12,6 @@ export const subscribeEmail = createAsyncThunk(
   "newsletter/subscribeEmail",
   async (email: string, { rejectWithValue }) => {
     try {
-      console.log("email", email);
-
       const response = await postEmailSubscription(email);
       return response.data;
     } catch (error: any) {

@@ -22,7 +22,7 @@ const TeamCard: React.FC<TeamCardProps> = ({
   const isAr = "ar" === useLocale();
   const loading = useSelector(selectTeamsLoading);
   const [imageLoading, setImageLoading] = useState(loading);
-  console.log("isAr", isAr, "loading", loading);
+
   return (
     <div className="flex flex-col items-center justify-center gap-2 text-center">
       <div className="relative flex h-48 w-48 items-center justify-center">

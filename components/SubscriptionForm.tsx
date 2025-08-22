@@ -12,7 +12,7 @@ import {
 import { useAppDispatch } from "@/store";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 const validationSchema = Yup.object({
   email: Yup.string()
@@ -25,6 +25,7 @@ const SubscriptionForm = () => {
   const status = useSelector(selectFormStatus);
   const message = useSelector(selectEmailMessage);
   const isAr = useLocale() === "ar";
+  const t = useTranslations("footer");
   const formik = useFormik({
     initialValues: { email: "" },
     validationSchema,
@@ -34,16 +35,14 @@ const SubscriptionForm = () => {
         const resultAction: any = await dispatch(subscribeEmail(values.email));
 
         if (subscribeEmail.fulfilled.match(resultAction)) {
-          toast.success(
-            message || (isAr ? "تم الاشتراك بنجاح" : "Subscribed successfully"),
-          );
+          toast.success(message || t("subscribed-successfully"));
           formikReset();
           dispatch(resetForm());
         } else {
-          toast.error(message || (isAr ? "حدث خطأ" : "Something went wrong"));
+          toast.error(message || t("something-went-wrong"));
         }
       } catch (error) {
-        toast.error(isAr ? "حدث خطأ أثناء الاشتراك" : "Subscription error");
+        toast.error(t("subscription-failed"));
         console.error("Subscription error:", error);
       } finally {
         setSubmitting(false);
@@ -60,7 +59,7 @@ const SubscriptionForm = () => {
         <input
           type="email"
           name="email"
-          placeholder={isAr ? "البريد الإلكتروني" : "Email"}
+          placeholder={t("enter-your-email")}
           onChange={formik.handleChange}
           onBlur={formik.handleBlur}
           value={formik.values.email}
@@ -69,15 +68,11 @@ const SubscriptionForm = () => {
         <button
           type="submit"
           disabled={status === "loading" || formik.isSubmitting}
-          className="absolute right-0 top-1 me-2 rounded-r bg-primary p-1 text-white disabled:opacity-50"
+          className="absolute right-0 top-1  mx-2 rounded-r bg-primary p-1 text-white disabled:opacity-50"
         >
-          {status === "loading" || formik.isSubmitting
-            ? isAr
-              ? "جاري الإرسال..."
-              : "Subscribing..."
-            : isAr
-              ? "اشتراك"
-              : "Subscribe"}
+          {status === "loading" || formik.isSubmitting ?
+           t("subscribing")
+            : t("subscribe")}
         </button>
         <p>
           {formik.touched.email && formik.errors.email && (

@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/store";
 import { ISlide } from "@/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 interface SliderProps {
   initialSlides: ISlide[];
@@ -21,10 +21,12 @@ const Slider = ({ initialSlides }: SliderProps) => {
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
   const t = useTranslations();
+  const locale = useLocale();
 
   useEffect(() => {
+    setLoading(true);
     dispatch(fetchSlides()).finally(() => setLoading(false));
-  }, [dispatch]);
+  }, [dispatch, locale]);
 
   useEffect(() => {
     if (!slides || slides.length === 0) return;
@@ -34,6 +36,9 @@ const Slider = ({ initialSlides }: SliderProps) => {
     return () => clearInterval(interval);
   }, [slides]);
 
+  useEffect(() => {
+    setCurrent(0);
+  }, [locale]);
   const prevSlide = () =>
     setCurrent(current === 0 ? Number(slides?.length) - 1 : current - 1);
   const nextSlide = () =>
