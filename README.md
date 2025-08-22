@@ -1,40 +1,122 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/pages/api-reference/create-next-app).
+<h1 align="center">📌 Business CMS</h1>
+<h3 align="center">A powerful multi-language CMS built with Next.js, Strapi, and Redux Toolkit</h3>
 
-## Getting Started
+## 📋 Table of Contents
 
-First, run the development server:
+1. 🤖 [Introduction](#introduction)
+2. ⚙️ [Tech Stack](#tech-stack)
+3. 🔋 [Features](#features)
+4. ⚡ [API Integration](#api-integration)
+5. 🤸 [Quick Start](#quick-start)
+6. 🕸️ [Live Demo](#live-demo)
+7. 🪪 [Demo Login](#demo-login)
+8. 🐳 [Docker Support](#docker-support)
+9. 🧩 [Code Snippets](#code-snippets)
 
-```bash
+---
+
+## <a name="introduction">🤖 Introduction</a>
+
+**Business CMS** is a modern **content management platform** built with **Next.js 15**, **Strapi**, **Redux Toolkit**, and **Tailwind CSS**.  
+It is designed for **multi-language content**, **SEO-friendly pages**, and **optimized performance**.
+
+This CMS lets you manage **services, blogs, products, and pages** easily, with support for **dynamic routing** and **server-side rendering**.
+
+---
+
+## <a name="tech-stack">⚙️ Tech Stack</a>
+
+- **Next.js 15** → Server-side rendering, static generation & routing
+- **TypeScript** → Type-safe development
+- **Redux Toolkit** → State management for global data
+- **Axios** → API integration with Strapi backend
+- **Strapi CMS** → Headless CMS for managing content
+- **Next-Intl** → Internationalization (i18n) for multi-language support
+- **Tailwind CSS** → Responsive & modern UI design
+- **Lucide React** → Icon library
+- **React Toastify** → Notifications & alerts
+- **Formik + Yup** → Forms & validations
+
+---
+
+## <a name="features">🔋 Features</a>
+
+### 🏷️ **Services Management**
+
+- Fetch and display dynamic services from Strapi API
+- Multi-language support (English / Arabic)
+- SEO-friendly service detail pages
+- Image banners, thumbnails, and descriptions
+
+### 📄 **Dynamic Pages**
+
+- Slug-based dynamic routing
+- Optimized for **Next.js 15** pages Router
+- Pre-rendered for **fast SEO performance**
+
+### 🌐 **Multi-Language Support**
+
+- Uses `next-intl`
+- Switch between **English** and **Arabic**
+- Dynamic text rendering based on locale
+
+### 🔎 **Search & Filtering**
+
+- Service listing with **search bar**
+- **Category-based filtering** and sorting
+
+### 🗂️ **Pagination**
+
+- Built-in pagination for large datasets
+- Dynamic query params: `?page=1&pageSize=10`
+
+### ⚡ **Performance**
+
+- Fully optimized for **Core Web Vitals**
+- Uses `getStaticProps` & `getServerSideProps` where required
+
+---
+
+## <a name="api-integration">⚡ API Integration</a>
+
+We are using **Strapi CMS** as the backend.  
+Base URL:
+
+````bash
+https://appealing-hope-3e4e8960ac.strapiapp.com/api
+import axiosClient from '@/lib/axiosClient';
+
+export const getServices = async (locale: string, page: number = 1, pageSize: number = 10) => {
+  return axiosClient.get(`/service-items`, {
+    params: {
+      locale,
+      populate: '*',
+      pagination: {
+        page,
+        pageSize,
+      },
+    },
+  });
+};```
+
+<a name="quick-start">🤸 Quick Start</a>
+git clone https://github.com/khaled9912/io-tech-frontend.git
+cd business-cms
+
+
+2. Install Dependencies
+npm install
+
+3. Configure Environment Variables
+
+Create a .env.local file:
+NEXT_PUBLIC_API_URL=https://appealing-hope-3e4e8960ac.strapiapp.com/api
+
+4. Run the Project
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+<a name="live-demo">🕸️ Live Demo</a>
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+🚀 Live Demo
 
-[API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
-
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/pages/building-your-application/routing/api-routes) instead of React pages.
-
-This project uses [`next/font`](https://nextjs.org/docs/pages/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn-pages-router) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/pages/building-your-application/deploying) for more details.
+````
