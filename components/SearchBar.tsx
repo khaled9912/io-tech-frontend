@@ -12,9 +12,9 @@ const SearchBar = ({ openSearch, setOpenSearch }: SearchBarProps) => {
 
   const handleSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (query.trim()) {
-      router.push(`/list?name=${encodeURIComponent(query)}`);
-    }
+    // if (query.trim()) {
+    //   router.push(`/list?name=${encodeURIComponent(query)}`);
+    // }
   };
 
   return (

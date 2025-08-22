@@ -86,14 +86,14 @@ const Navbar = () => {
             </button>
 
             {servicesOpen && (
-              <div className="fixed left-0 top-[80px] z-50 grid w-full grid-cols-4 gap-8 bg-primary p-8 text-white shadow-lg">
+              <div className="absolute left-0 top-full z-50 grid w-full grid-cols-4 gap-4 bg-primary p-6 text-white shadow-lg max-lg:grid-cols-2 lg:min-w-[1300px]">
                 {serviceGroups.map((group, idx) => (
-                  <div key={idx} className="flex flex-col gap-3">
+                  <div key={idx} className="flex flex-col gap-2">
                     {group.map((service) => (
                       <Link
                         key={service.id}
                         href={`/services/${service.slug}`}
-                        className="whitespace-nowrap"
+                        className="block w-full text-sm hover:text-gray-200"
                       >
                         {isAr === "ar" ? service.titleAr : service.titleEn}
                       </Link>

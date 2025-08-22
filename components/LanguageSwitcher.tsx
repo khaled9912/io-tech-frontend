@@ -17,6 +17,7 @@ const LanguageSwitcher = () => {
 
     startTransition(() => {
       router.push(pathname, pathname, { locale: newLocale });
+      window.location.reload();
     });
   };
 
