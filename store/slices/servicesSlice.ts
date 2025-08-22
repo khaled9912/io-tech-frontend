@@ -100,4 +100,5 @@ export const selectSingleServiceError = (state: RootState) =>
   state.services.singleError;
 export const selectSingleServicePagination = (state: any) =>
   state.services.pagination;
+
 export default servicesSlice.reducer;
