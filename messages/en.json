@@ -18,5 +18,18 @@
   },
   "error": "Something went wrong...",
   "error-occurred": "An unexpected error occurred.",
-  "loading": "Loading..."
+  "slider-title": "Lorem Ipsum",
+  "loading": "Loading...",
+  "services": "Services",
+  "read-more": "Read More",
+  "footer": {
+    "about": "About",
+    "services": "Our Services",
+    "contacts": "Contacts",
+    "social-responsibility": "Social Responsibility",
+    "our-adventages": "Our Advantages",
+    "follow-us": "Follow Us",
+    "rights": "© 2024. All rights reserved.",
+    "strategy": "Our Strategy"
+  }
 }

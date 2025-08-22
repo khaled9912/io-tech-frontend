@@ -7,6 +7,7 @@ import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/store";
 import { ISlide } from "@/types";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface SliderProps {
   initialSlides: ISlide[];
@@ -19,6 +20,7 @@ const Slider = ({ initialSlides }: SliderProps) => {
     Number(slidesFromRedux?.length) > 0 ? slidesFromRedux : initialSlides;
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
+  const t = useTranslations();
 
   useEffect(() => {
     dispatch(fetchSlides()).finally(() => setLoading(false));
@@ -75,19 +77,21 @@ const Slider = ({ initialSlides }: SliderProps) => {
         {/* Left/Right arrows */}
         <button
           onClick={prevSlide}
-          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-gray-700 bg-opacity-50 p-2 text-white transition hover:bg-opacity-80"
+          className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-transparent bg-opacity-50 p-2 text-white transition hover:bg-opacity-80 md:top-56"
         >
           <ChevronLeft />
         </button>
         <button
           onClick={nextSlide}
-          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-gray-700 bg-opacity-50 p-2 text-white transition hover:bg-opacity-80"
+          className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-transparent bg-opacity-50 p-2 text-white transition hover:bg-opacity-80 md:top-56"
         >
           <ChevronRight />
         </button>
 
-        <div className="absolute left-40 top-3/4 flex -translate-y-1/2 flex-col gap-4">
-          <button className="rounded bg-white p-4">Read More</button>
+        <div className="absolute left-40 top-3/4 flex -translate-y-1/2 flex-col gap-4 max-sm:left-32">
+          <button className="rounded bg-white p-4 text-primary">
+            {t("read-more")}
+          </button>
         </div>
         <div className="absolute right-40 top-3/4 flex -translate-y-1/2 flex-col gap-4 max-sm:hidden">
           <Image
@@ -97,6 +101,11 @@ const Slider = ({ initialSlides }: SliderProps) => {
             height={200}
             className="object-contain"
           />
+        </div>
+
+        <div className="auto-mx container absolute left-40 top-1/2 flex max-w-lg -translate-y-1/2 flex-col gap-4 text-white max-sm:hidden">
+          <h1 className="text-4xl font-bold"> {t("slider-title")}</h1>
+          <p>{t("teams.bio")}</p>
         </div>
 
         {/* Vertical dots */}

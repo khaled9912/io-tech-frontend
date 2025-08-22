@@ -72,8 +72,8 @@ const Navbar = () => {
         )}
 
         <div className="hidden items-center gap-8 md:flex">
-          <Link href="/">{"home"}</Link>
-          <Link href="/">{"about"}</Link>
+          <Link href="/">{t("home")}</Link>
+          <Link href="/">{t("about")}</Link>
 
           <div
             className="group relative"
@@ -81,7 +81,7 @@ const Navbar = () => {
             onMouseLeave={() => setServicesOpen(false)}
           >
             <button className="flex items-center gap-1">
-              {"services"}
+              {t("services")}
               <span className="ml-1">▼</span>
             </button>
 
@@ -112,8 +112,8 @@ const Navbar = () => {
           {isTransparent ? (
             <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
           ) : null}
-          {openSearch ? null : !isTransparent ? <LanguageSwitcher /> : null}
-          <button className="text-whit rounded-md border border-white bg-transparent px-4 py-2 hover:bg-gray-100">
+          {!isTransparent ? <LanguageSwitcher /> : null}
+          <button className="text-whit whitespace-nowrap rounded-md border border-white bg-transparent px-4 py-2 hover:bg-gray-100">
             {t("book-appointment")}
           </button>
         </div>
@@ -129,7 +129,7 @@ const Navbar = () => {
       {mobileOpen && (
         <div className="bg-brand flex h-full flex-col gap-4 overflow-y-auto px-6 py-4 text-white md:hidden">
           <Link href="/">{t("home")}</Link>
-          <Link href="/">{"about-us"}</Link>
+          <Link href="/">{t("about")}</Link>
           <button
             onClick={() => setServicesOpen(!servicesOpen)}
             className="flex items-center justify-between overflow-y-auto"
@@ -160,7 +160,7 @@ const Navbar = () => {
 
           <div className="flex gap-2">
             {!isTransparent ? <LanguageSwitcher /> : null}
-            <button className="rounded-md border border-white px-4 py-2 text-white hover:bg-gray-100">
+            <button className="whitespace-nowrap rounded-md border border-white px-4 py-2 text-white hover:bg-gray-100">
               {t("book-appointment")}
             </button>
           </div>
