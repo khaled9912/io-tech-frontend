@@ -28,7 +28,7 @@ const Navbar = () => {
   const [openSearch, setOpenSearch] = useState(false);
   const dispatch = useAppDispatch();
   const selectServiceError = useSelector(selectServicesError);
-  console.log("selectServiceError", selectServiceError);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -112,11 +112,10 @@ const Navbar = () => {
           {isTransparent ? (
             <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
           ) : null}
-          {openSearch ? null : (
-            <button className="rounded-md border bg-white px-4 py-2 text-black hover:bg-gray-100">
-              {t("book-appointment")}
-            </button>
-          )}
+          {openSearch ? null : !isTransparent ? <LanguageSwitcher /> : null}
+          <button className="text-whit rounded-md border border-white bg-transparent px-4 py-2 hover:bg-gray-100">
+            {t("book-appointment")}
+          </button>
         </div>
 
         <button
@@ -135,7 +134,7 @@ const Navbar = () => {
             onClick={() => setServicesOpen(!servicesOpen)}
             className="flex items-center justify-between overflow-y-auto"
           >
-            Services <span>{servicesOpen ? "▲" : "▼"}</span>
+            {t("services")} <span>{servicesOpen ? "▲" : "▼"}</span>
           </button>
           {servicesOpen && (
             <div className="flex h-full flex-col gap-2 pl-4">
@@ -159,9 +158,9 @@ const Navbar = () => {
           <Link href="/">{t("blog")}</Link>
           <Link href="/">{t("contact")}</Link>
 
-          <div>
+          <div className="flex gap-2">
             {!isTransparent ? <LanguageSwitcher /> : null}
-            <button className="rounded-md border bg-white px-4 py-2 text-black hover:bg-gray-100">
+            <button className="rounded-md border border-white px-4 py-2 text-white hover:bg-gray-100">
               {t("book-appointment")}
             </button>
           </div>

@@ -25,11 +25,11 @@ const LanguageSwitcher = () => {
       value={currentLocale}
       onChange={handleChange}
       disabled={isPending}
-      className="rounded border bg-primary p-2 text-white"
+      className="rounded border bg-primary p-2 text-white md:border-none"
     >
       {locales.map((lng) => (
         <option key={lng} value={lng}>
-          {lng === "en" ? "English" : "العربية"}
+          {lng === "en" ? "En" : "ع"}
         </option>
       ))}
     </select>
