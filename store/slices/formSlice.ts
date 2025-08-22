@@ -1,28 +1,29 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { RootState } from '../index';
-import { postEmailSubscription } from '@/lib/utils';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { RootState } from "../index";
+import { postEmailSubscription } from "@/lib/utils";
 
 const initialState = {
-  email: '',
-  status: 'idle',
-  message: '',
+  email: "",
+  status: "idle",
+  message: "",
 };
 
-
 export const subscribeEmail = createAsyncThunk(
-  'newsletter/subscribeEmail',
+  "newsletter/subscribeEmail",
   async (email: string, { rejectWithValue }) => {
     try {
+      console.log("email", email);
+
       const response = await postEmailSubscription(email);
       return response.data;
     } catch (error: any) {
-      return rejectWithValue(error.response?.data || 'Something went wrong');
+      return rejectWithValue(error.response?.data || "Something went wrong");
     }
-  }
+  },
 );
 
 const formSlice = createSlice({
-  name: 'form',
+  name: "form",
   initialState,
   reducers: {
     setEmail: (state, action) => {
@@ -30,7 +31,7 @@ const formSlice = createSlice({
     },
     setFormStatus: (state, action) => {
       state.status = action.payload.status;
-      state.message = action.payload.message || '';
+      state.message = action.payload.message || "";
     },
     resetForm: () => {
       return initialState;
@@ -40,8 +41,8 @@ const formSlice = createSlice({
 
 export const { setEmail, setFormStatus, resetForm } = formSlice.actions;
 
-//selector 
+//selector
 export const selectEmailMessage = (state: RootState) => state.form.message;
-export const selectFormStatus =  (state: RootState) => state.form.status;
+export const selectFormStatus = (state: RootState) => state.form.status;
 
 export default formSlice.reducer;
