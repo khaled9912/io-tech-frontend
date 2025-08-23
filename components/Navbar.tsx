@@ -99,8 +99,8 @@ const Navbar = () => {
                   leaveTo="opacity-0 translate-y-1"
                 >
                   <Popover.Panel
-                    className={`absolute top-full z-50 mt-4 grid max-h-[70vh] w-full grid-cols-4 gap-4 overflow-y-auto bg-primary p-6 text-white shadow-lg max-lg:grid-cols-2 lg:min-w-[1300px] ${isAr ? "right-0" : "left-0"} ${
-                      isAr
+                    className={`absolute top-full z-50 mt-4 grid max-h-[70vh] w-full grid-cols-4 gap-4 overflow-y-auto bg-primary p-6 text-white shadow-lg max-lg:grid-cols-2 lg:min-w-[1300px] ${isAr === "ar" ? "right-0" : "left-0"} ${
+                      isAr === "ar"
                         ? isTransparent
                           ? "xl:-mr-56"
                           : "xl:-mr-96"
