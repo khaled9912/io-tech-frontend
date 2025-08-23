@@ -26,7 +26,7 @@ export default function ServicePageComponent({ id }: ServicePageProps) {
   const service = useSelector(selectSingleService);
   const error = useSelector(selectSingleServiceError);
   const loading = useSelector(selectSingleServiceLoading);
-  console.log("Service Data:", service, id);
+
   useEffect(() => {
     if (id) {
       dispatch(fetchSingleService({ id }));

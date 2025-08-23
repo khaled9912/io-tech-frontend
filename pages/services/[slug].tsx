@@ -12,7 +12,6 @@ export const getServerSideProps: GetServerSideProps = async ({
 }) => {
   const slug = params?.slug as string;
   const id = query.id as string;
-  console.log("Service Slug:", slug, "Service ID:", id, params, query);
 
   if (!slug || !id) {
     return {

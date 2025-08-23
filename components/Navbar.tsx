@@ -99,7 +99,15 @@ const Navbar = () => {
                   leaveTo="opacity-0 translate-y-1"
                 >
                   <Popover.Panel
-                    className={`absolute left-0 top-full z-50 grid max-h-[70vh] w-full grid-cols-4 gap-4 overflow-y-auto bg-primary p-6 text-white shadow-lg max-lg:grid-cols-2 lg:min-w-[1300px] ${isTransparent ? "xl:-ml-56" : "xl:-ml-96"}`}
+                    className={`absolute top-full z-50 mt-4 grid max-h-[70vh] w-full grid-cols-4 gap-4 overflow-y-auto bg-primary p-6 text-white shadow-lg max-lg:grid-cols-2 lg:min-w-[1300px] ${isAr ? "right-0" : "left-0"} ${
+                      isAr
+                        ? isTransparent
+                          ? "xl:-mr-56"
+                          : "xl:-mr-96"
+                        : isTransparent
+                          ? "xl:-ml-56"
+                          : "xl:-ml-96"
+                    }`}
                   >
                     {serviceGroups.map((group, idx) => (
                       <div key={idx} className="flex flex-col gap-2">
@@ -173,7 +181,9 @@ const Navbar = () => {
           <Link href="/">{t("contact")}</Link>
 
           <div className="mt-4 flex gap-2">
-            {!isTransparent ? <LanguageSwitcher /> : null}
+            <div className="sm:hidden">
+              <LanguageSwitcher />
+            </div>
             <button className="whitespace-nowrap rounded-md border border-white px-4 py-2 text-white hover:bg-gray-100">
               {t("book-appointment")}
             </button>

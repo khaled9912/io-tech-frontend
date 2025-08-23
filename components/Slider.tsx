@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { fetchSlides, selectSlides } from "@/store/slices/heroSlice";
 import { useSelector } from "react-redux";
 import { useAppDispatch } from "@/store";
@@ -36,14 +36,21 @@ const Slider = ({ initialSlides }: SliderProps) => {
     return () => clearInterval(interval);
   }, [slides]);
 
+  const prevLocale = useRef<string | null>(null);
+
   useEffect(() => {
-    setCurrent(0);
+    if (prevLocale.current && prevLocale.current !== locale) {
+      window.location.reload();
+    }
+    prevLocale.current = locale;
   }, [locale]);
+
   const prevSlide = () =>
     setCurrent(current === 0 ? Number(slides?.length) - 1 : current - 1);
+
   const nextSlide = () =>
     setCurrent(current === Number(slides?.length) - 1 ? 0 : current + 1);
-  console.log("slides", slides, slidesFromRedux, initialSlides);
+
   if (loading || !slides || slides.length === 0) {
     return (
       <div className="flex h-[calc(100vh-80px)] items-center justify-center">
@@ -58,13 +65,15 @@ const Slider = ({ initialSlides }: SliderProps) => {
       <div className="relative h-screen w-full overflow-hidden">
         {/* Slides */}
         <div
-          className="flex h-full w-max transition-all duration-1000 ease-in-out"
-          style={{ transform: `translateX(-${current * 100}vw)` }}
+          className="flex h-full w-full transition-transform duration-1000 ease-in-out"
+          style={{
+            transform: `translateX(${locale === "ar" ? current * 100 : -current * 100}%)`,
+          }}
         >
           {slides.map((slide, idx) => (
             <div
-              className="flex h-full w-screen flex-col gap-16 xl:flex-row"
               key={idx}
+              className="flex h-full w-full flex-shrink-0 flex-col gap-16 xl:flex-row"
             >
               <div className="relative h-full w-full">
                 <Image

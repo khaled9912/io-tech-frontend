@@ -19,7 +19,7 @@ const TestimonialSlider = () => {
   const loading = useSelector(selectClientsLoading);
   const dispatch = useAppDispatch();
   const locale = useLocale();
-
+  const isAr = locale === "ar";
   useEffect(() => {
     dispatch(fetchClients());
   }, [dispatch]);
@@ -46,7 +46,6 @@ const TestimonialSlider = () => {
       <div className="md:mx-16">
         <h2 className="mb-2 text-2xl font-bold">{t("title")}</h2>
         <p className="mb-8 max-w-2xl text-gray-200">{t("bio")}</p>
-
         <div className="flex flex-col items-center gap-8 md:flex-row">
           {/* Client Image */}
           <div className="relative h-32 w-32 flex-shrink-0 overflow-hidden rounded-lg">
@@ -72,22 +71,29 @@ const TestimonialSlider = () => {
             </p>
           </div>
         </div>
-
         {/* Navigation Arrows */}
-        <div className="absolute bottom-4 right-4 flex gap-4">
+        <div
+          className={`absolute bottom-4 flex gap-4 ${
+            isAr ? "left-4" : "right-4"
+          }`}
+        >
+          {/* Previous Button */}
           <button
-            onClick={prevSlide}
+            onClick={isAr ? nextSlide : prevSlide}
             className="rounded-full bg-white bg-opacity-20 p-3 transition hover:bg-opacity-40"
           >
-            <ChevronLeft />
+            {isAr ? <ChevronRight /> : <ChevronLeft />}
           </button>
+
+          {/* Next Button */}
           <button
-            onClick={nextSlide}
+            onClick={isAr ? prevSlide : nextSlide}
             className="rounded-full bg-white bg-opacity-20 p-3 transition hover:bg-opacity-40"
           >
-            <ChevronRight />
+            {isAr ? <ChevronLeft /> : <ChevronRight />}
           </button>
         </div>
+        ;
       </div>
     </div>
   );
