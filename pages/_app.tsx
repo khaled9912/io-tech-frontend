@@ -14,24 +14,25 @@ export default function App({
   const { store, props } = wrapper.useWrappedStore(rest);
 
   return (
-    <Provider store={store}>
-      <IntlProvider
-        messages={pageProps?.messages || {}}
-        locale={pageProps?.locale || "en"}
-        timeZone="UTC"
-      >
-        <ErrorBoundary
-          fallback={
-            <div className="flex h-screen items-center justify-center font-bold">
-              Something went wrong globally!
-            </div>
-          }
+
+      <Provider store={store}>
+        <IntlProvider
+          messages={pageProps?.messages || {}}
+          locale={pageProps?.locale || "en"}
+          timeZone="UTC"
         >
-          <LandingPage>
-            <Component {...pageProps} />
-          </LandingPage>
-        </ErrorBoundary>
-      </IntlProvider>
-    </Provider>
+          <ErrorBoundary
+            fallback={
+              <div className="flex h-screen items-center justify-center font-bold">
+                Something went wrong globally!
+              </div>
+            }
+          >
+            <LandingPage>
+              <Component {...pageProps} />
+            </LandingPage>
+          </ErrorBoundary>
+        </IntlProvider>
+      </Provider>
   );
 }

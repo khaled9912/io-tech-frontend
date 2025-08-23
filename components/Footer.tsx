@@ -7,7 +7,7 @@ import { useTranslations } from "next-intl";
 const Footer = () => {
   const t = useTranslations("footer");
   return (
-    <div className="mb-5 min-h-[400px] bg-primary text-sm text-white md:min-h-[200px] md:px-8">
+    <div className="mb-5 min-h-[200px] w-full bg-primary text-sm text-white md:min-h-[200px] md:px-8">
       <div className="mx-12 flex flex-col items-center justify-end gap-5 md:flex-row">
         {/* Subscribe Form */}
         <div className="flex items-center gap-2">

@@ -6,6 +6,8 @@ import { getSlides } from "@/lib/utils";
 import { ISlide } from "@/types";
 import TestimonialSlider from "@/components/TestmonialSlider";
 import { IntlProvider } from "next-intl";
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
 
 interface IndexPageProps {
   slides: ISlide[];
@@ -21,9 +23,11 @@ export default function IndexPage({
   return (
     <div className="mb-4 flex min-h-[800px] min-h-screen flex-col items-center justify-center md:mb-8">
       <IntlProvider messages={messages} locale={locale} timeZone="UTC">
+        <Navbar />
         <Slider initialSlides={slides} />
         <TeamSection />
         <TestimonialSlider />
+        <Footer />
       </IntlProvider>
     </div>
   );

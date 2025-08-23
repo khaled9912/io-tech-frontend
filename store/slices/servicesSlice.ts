@@ -20,18 +20,8 @@ export const fetchServices = createAsyncThunk(
 
 export const fetchSingleService = createAsyncThunk(
   "services/fetchSingleService",
-  async ({
-    id,
-    locale,
-    page,
-    pageSize,
-  }: {
-    id: string;
-    locale: string;
-    page: number;
-    pageSize: number;
-  }) => {
-    const response = await getServiceById(id, locale, page, pageSize);
+  async ({ id }: { id: string }) => {
+    const response = await getServiceById(id);
     return response.data;
   },
 );
@@ -45,12 +35,6 @@ const servicesSlice = createSlice({
     listError: null as string | null,
     singleLoading: false,
     singleError: null as string | null,
-    pagination: {
-      page: 1,
-      pageSize: 5,
-      pageCount: 1,
-      total: 0,
-    },
   },
   reducers: {},
   extraReducers: (builder) => {
@@ -76,7 +60,6 @@ const servicesSlice = createSlice({
       .addCase(fetchSingleService.fulfilled, (state, action) => {
         state.singleLoading = false;
         state.singleService = action.payload;
-        state.pagination = action.payload.meta?.pagination || state.pagination;
       })
       .addCase(fetchSingleService.rejected, (state, action) => {
         state.singleLoading = false;
@@ -98,7 +81,5 @@ export const selectSingleServiceLoading = (state: RootState) =>
   state.services.singleLoading;
 export const selectSingleServiceError = (state: RootState) =>
   state.services.singleError;
-export const selectSingleServicePagination = (state: any) =>
-  state.services.pagination;
 
 export default servicesSlice.reducer;

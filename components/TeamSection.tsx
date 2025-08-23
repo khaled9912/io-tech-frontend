@@ -1,5 +1,5 @@
 // components/TeamCarousel.tsx
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import TeamCard from "./TeamCard";
 import { useAppDispatch } from "@/store";
@@ -9,14 +9,17 @@ import {
   selectTeams,
   selectTeamsLoading,
 } from "@/store/slices/teamsSlice";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import PageLoader from "./PageLoader";
 
 const TeamSection: React.FC = () => {
   const dispatch = useAppDispatch();
+  const page = 1;
+  const pageSize = 5;
+  const locale = useLocale();
   useEffect(() => {
-    dispatch(fetchTeamMembers());
-  }, [dispatch]);
+    dispatch(fetchTeamMembers({ page, pageSize, locale }));
+  }, [dispatch, page, pageSize, locale]);
 
   const [currentIndex, setCurrentIndex] = useState(0);
 

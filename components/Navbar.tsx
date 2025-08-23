@@ -106,7 +106,7 @@ const Navbar = () => {
                         {group.map((service) => (
                           <Link
                             key={service.id}
-                            href={`/services/${service.slug}`}
+                            href={`/services/${service.slug}?id=${service.id}`}
                             className="block w-full text-sm hover:text-gray-200"
                           >
                             {isAr === "ar" ? service.titleAr : service.titleEn}
@@ -120,12 +120,11 @@ const Navbar = () => {
             )}
           </Popover>
 
-          <Link href="/team">{t("team")}</Link>
+          <Link href="/teams">{t("team")}</Link>
           <Link href="/">{t("blog")}</Link>
           <Link href="/">{t("contact")}</Link>
         </div>
 
-        {/* Right Section */}
         <div className="hidden items-center gap-6 xl:flex">
           {isTransparent ? (
             <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
@@ -160,7 +159,7 @@ const Navbar = () => {
               {sortedServices.map((service) => (
                 <Link
                   key={service.id}
-                  href={`/services/${service.slug}`}
+                  href={`/services/${service.slug}?id=${service.id}`}
                   className="whitespace-nowrap"
                 >
                   {isAr === "ar" ? service.titleAr : service.titleEn}

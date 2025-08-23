@@ -5,14 +5,7 @@ export default function Document(props: any) {
 
   return (
     <Html lang={props.__NEXT_DATA__.locale} dir={dir}>
-      <Head>
-        <title>BussinessCMS</title>
-        <meta name="description" content="it is a bussiness CMS app!" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
+      <Head></Head>
       <body>
         <Main />
         <NextScript />

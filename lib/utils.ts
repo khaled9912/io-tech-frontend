@@ -5,13 +5,19 @@ export const getServices = (locale: string) =>
     params: { locale, populate: "*" },
   });
 
-export const getServiceById = async (
-  id: string,
-  locale: string,
-  page = 1,
-  pageSize = 5,
+export const getServiceById = async (id: string) => {
+  return axiosClient.get(`/api/service-items/${id}`);
+};
+
+export const postEmailSubscription = (email: string) =>
+  axiosClient.post("api/newsletter-subscribers", { data: { email } });
+
+export const getTeams = async (
+  page: number = 1,
+  pageSize: number = 10,
+  locale?: string,
 ) => {
-  return axiosClient.get(`/api/service-items/${id}`, {
+  return axiosClient.get(`/api/team-members`, {
     params: {
       locale,
       populate: "*",
@@ -20,14 +26,6 @@ export const getServiceById = async (
     },
   });
 };
-
-export const postEmailSubscription = (email: string) =>
-  axiosClient.post("api/newsletter-subscribers", { data: { email } });
-
-export const getTeams = () =>
-  axiosClient.get("/api/team-members", {
-    params: { populate: "*" },
-  });
 
 export const getSlides = () =>
   axiosClient.get("/api/hero-section-contents", {

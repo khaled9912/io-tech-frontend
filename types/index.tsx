@@ -40,6 +40,16 @@ export interface ITeamMember {
     url: string;
   };
   slug?: string;
+  services?: ITeamService;
+}
+export interface ISubItem {
+  title: string;
+  buttonText: string;
+}
+
+export interface ITeamService {
+  ar: ISubItem[];
+  en: ISubItem[];
 }
 
 export interface SearchBarProps {
