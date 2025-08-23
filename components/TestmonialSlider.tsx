@@ -93,7 +93,7 @@ const TestimonialSlider = () => {
             {isAr ? <ChevronLeft /> : <ChevronRight />}
           </button>
         </div>
-        ;
+     
       </div>
     </div>
   );
