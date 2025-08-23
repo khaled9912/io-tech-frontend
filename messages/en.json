@@ -6,7 +6,8 @@
     "contact": "Contact Us",
     "blog": "Blog",
     "book-appointment": "Book Appointment",
-    "team": "Our Team"
+    "team": "Our Team",
+    "read-more": "Read More"
   },
   "teams": {
     "title": "Our Teams",
@@ -19,8 +20,8 @@
     "read-more": "Read More",
     "no-data": "No data available",
     "back": "Back",
-    "team":"Team",
-    "Services":"Services"
+    "team": "Team",
+    "Services": "Services"
   },
   "clients": {
     "title": "What our clients are saying",
@@ -51,5 +52,8 @@
   "service": {
     "back-to-services": "Back to Services",
     "no-date": "No data available"
-  }
+  },
+  "search-for": "Search Results for",
+  "no-services-found": "No services found",
+  "no-teams-found": "No team members found"
 }
