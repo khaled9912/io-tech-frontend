@@ -16,12 +16,13 @@ import {
   selectServicesError,
 } from "@/store/slices/servicesSlice";
 import { IServiceItem } from "@/types";
+import { Popover, Transition } from "@headlessui/react";
+import { Fragment } from "react";
 
 const Navbar = () => {
   const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [servicesOpen, setServicesOpen] = useState(false);
   const t = useTranslations("navbar");
   const isAr = useLocale();
   const services = useSelector(selectServices);
@@ -59,7 +60,7 @@ const Navbar = () => {
   return (
     <nav
       className={`fixed left-0 top-0 z-50 w-full transition-colors duration-300 ${
-        isTransparent
+        isTransparent && !mobileOpen
           ? "bg-transparent text-white"
           : "bg-primary text-white shadow-md"
       }`}
@@ -71,44 +72,61 @@ const Navbar = () => {
           </Link>
         )}
 
-        <div className="hidden items-center gap-8 md:flex">
+        {/* Desktop Nav */}
+        <div className="hidden items-center gap-8 xl:flex">
           <Link href="/">{t("home")}</Link>
           <Link href="/">{t("about")}</Link>
 
-          <div
-            className="group relative"
-            onMouseEnter={() => setServicesOpen(true)}
-            onMouseLeave={() => setServicesOpen(false)}
-          >
-            <button className="flex items-center gap-1">
-              {t("services")}
-              <span className="ml-1">▼</span>
-            </button>
+          {/* Desktop Mega Menu */}
+          <Popover className="relative hidden xl:block">
+            {({ open }) => (
+              <>
+                <Popover.Button
+                  className={`flex items-center gap-1 focus:outline-none ${
+                    open ? "text-gray-200" : ""
+                  }`}
+                >
+                  {t("services")} <span className="ml-1">▼</span>
+                </Popover.Button>
 
-            {servicesOpen && (
-              <div className="absolute left-0 top-full z-50 grid w-full grid-cols-4 gap-4 bg-primary p-6 text-white shadow-lg max-lg:grid-cols-2 lg:min-w-[1300px]">
-                {serviceGroups.map((group, idx) => (
-                  <div key={idx} className="flex flex-col gap-2">
-                    {group.map((service) => (
-                      <Link
-                        key={service.id}
-                        href={`/services/${service.slug}`}
-                        className="block w-full text-sm hover:text-gray-200"
-                      >
-                        {isAr === "ar" ? service.titleAr : service.titleEn}
-                      </Link>
+                <Transition
+                  as={Fragment}
+                  enter="transition ease-out duration-200"
+                  enterFrom="opacity-0 translate-y-1"
+                  enterTo="opacity-100 translate-y-0"
+                  leave="transition ease-in duration-150"
+                  leaveFrom="opacity-100 translate-y-0"
+                  leaveTo="opacity-0 translate-y-1"
+                >
+                  <Popover.Panel
+                    className={`absolute left-0 top-full z-50 grid max-h-[70vh] w-full grid-cols-4 gap-4 overflow-y-auto bg-primary p-6 text-white shadow-lg max-lg:grid-cols-2 lg:min-w-[1300px] ${isTransparent ? "xl:-ml-56" : "xl:-ml-96"}`}
+                  >
+                    {serviceGroups.map((group, idx) => (
+                      <div key={idx} className="flex flex-col gap-2">
+                        {group.map((service) => (
+                          <Link
+                            key={service.id}
+                            href={`/services/${service.slug}`}
+                            className="block w-full text-sm hover:text-gray-200"
+                          >
+                            {isAr === "ar" ? service.titleAr : service.titleEn}
+                          </Link>
+                        ))}
+                      </div>
                     ))}
-                  </div>
-                ))}
-              </div>
+                  </Popover.Panel>
+                </Transition>
+              </>
             )}
-          </div>
+          </Popover>
+
           <Link href="/team">{t("team")}</Link>
           <Link href="/">{t("blog")}</Link>
           <Link href="/">{t("contact")}</Link>
         </div>
 
-        <div className="hidden items-center gap-6 md:flex">
+        {/* Right Section */}
+        <div className="hidden items-center gap-6 xl:flex">
           {isTransparent ? (
             <SearchBar openSearch={openSearch} setOpenSearch={setOpenSearch} />
           ) : null}
@@ -118,47 +136,44 @@ const Navbar = () => {
           </button>
         </div>
 
+        {/* Mobile Menu Button */}
         <button
-          className="md:hidden"
+          className="xl:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
         >
           <Menu size={28} />
         </button>
       </div>
 
+      {/* Mobile Nav */}
       {mobileOpen && (
-        <div className="bg-brand flex h-full flex-col gap-4 overflow-y-auto px-6 py-4 text-white md:hidden">
+        <div className="bg-brand flex h-screen flex-col gap-4 overflow-y-auto px-6 py-4 text-white xl:hidden">
           <Link href="/">{t("home")}</Link>
           <Link href="/">{t("about")}</Link>
-          <button
-            onClick={() => setServicesOpen(!servicesOpen)}
-            className="flex items-center justify-between overflow-y-auto"
-          >
-            {t("services")} <span>{servicesOpen ? "▲" : "▼"}</span>
-          </button>
-          {servicesOpen && (
-            <div className="flex h-full flex-col gap-2 pl-4">
-              {sortedServices.map((service, id) => (
-                <div
-                  key={id}
-                  className="flex h-full flex-col gap-3 overflow-y-auto"
+
+          {/* Collapsible Services for Mobile */}
+          <details className="w-full">
+            <summary className="flex cursor-pointer items-center justify-between py-2">
+              {t("services")} <span>▼</span>
+            </summary>
+            <div className="flex flex-col gap-2 pl-4">
+              {sortedServices.map((service) => (
+                <Link
+                  key={service.id}
+                  href={`/services/${service.slug}`}
+                  className="whitespace-nowrap"
                 >
-                  <Link
-                    key={service.id}
-                    href={`/services/${service.slug}`}
-                    className="whitespace-nowrap"
-                  >
-                    {isAr === "ar" ? service.titleAr : service.titleEn}
-                  </Link>
-                </div>
+                  {isAr === "ar" ? service.titleAr : service.titleEn}
+                </Link>
               ))}
             </div>
-          )}
+          </details>
+
           <Link href="/team">{t("team")}</Link>
           <Link href="/">{t("blog")}</Link>
           <Link href="/">{t("contact")}</Link>
 
-          <div className="flex gap-2">
+          <div className="mt-4 flex gap-2">
             {!isTransparent ? <LanguageSwitcher /> : null}
             <button className="whitespace-nowrap rounded-md border border-white px-4 py-2 text-white hover:bg-gray-100">
               {t("book-appointment")}
