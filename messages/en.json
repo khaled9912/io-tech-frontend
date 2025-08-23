@@ -10,7 +10,17 @@
   },
   "teams": {
     "title": "Our Teams",
-    "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s"
+    "bio": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s",
+    "previous": "Previous",
+    "next": "Next",
+    "from": "from",
+    "to": "to",
+    "page": "Page",
+    "read-more": "Read More",
+    "no-data": "No data available",
+    "back": "Back",
+    "team":"Team",
+    "Services":"Services"
   },
   "clients": {
     "title": "What our clients are saying",
@@ -37,5 +47,9 @@
     "enter-your-email": "Enter your email",
     "subscribing": "Subscribing",
     "subscribe": "Subscribe"
+  },
+  "service": {
+    "back-to-services": "Back to Services",
+    "no-date": "No data available"
   }
 }
