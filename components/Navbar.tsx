@@ -168,7 +168,7 @@ const Navbar = () => {
             </div>
           </details>
 
-          <Link href="/team">{t("team")}</Link>
+          <Link href="/teams">{t("team")}</Link>
           <Link href="/">{t("blog")}</Link>
           <Link href="/">{t("contact")}</Link>
 

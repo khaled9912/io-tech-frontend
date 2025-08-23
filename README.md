@@ -82,7 +82,7 @@ This CMS lets you manage **services, blogs, products, and pages** easily, with s
 We are using **Strapi CMS** as the backend.  
 Base URL:
 
-````bash
+```bash
 https://appealing-hope-3e4e8960ac.strapiapp.com/api
 import axiosClient from '@/lib/axiosClient';
 
@@ -97,15 +97,17 @@ export const getServices = async (locale: string, page: number = 1, pageSize: nu
       },
     },
   });
-};```
+};
 
-<a name="quick-start">🤸 Quick Start</a>
+```
+
+## <a name="quick-start">🤸 Quick Start</a>
+
 git clone https://github.com/khaled9912/io-tech-frontend.git
 cd business-cms
 
-
 2. Install Dependencies
-npm install
+   npm install
 
 3. Configure Environment Variables
 
@@ -113,10 +115,9 @@ Create a .env.local file:
 NEXT_PUBLIC_API_URL=https://appealing-hope-3e4e8960ac.strapiapp.com/api
 
 4. Run the Project
-npm run dev
+   npm run dev
 
-<a name="live-demo">🕸️ Live Demo</a>
+## <a name="live-demo">🕸️ Live Demo</a>
 
 🚀 Live Demo
-
-````
+https://io-tech-frontend-one.vercel.app/

@@ -42,7 +42,7 @@ const TestimonialSlider = () => {
   const client = clients[current];
 
   return (
-    <div className="relative rounded-lg bg-primary p-8">
+    <div className="relative mb-4 rounded-lg bg-primary p-8">
       <div className="md:mx-16">
         <h2 className="mb-2 text-2xl font-bold">{t("title")}</h2>
         <p className="mb-8 max-w-2xl text-gray-200">{t("bio")}</p>

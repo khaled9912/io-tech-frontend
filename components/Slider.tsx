@@ -43,7 +43,7 @@ const Slider = ({ initialSlides }: SliderProps) => {
     setCurrent(current === 0 ? Number(slides?.length) - 1 : current - 1);
   const nextSlide = () =>
     setCurrent(current === Number(slides?.length) - 1 ? 0 : current + 1);
-
+  console.log("slides", slides, slidesFromRedux, initialSlides);
   if (loading || !slides || slides.length === 0) {
     return (
       <div className="flex h-[calc(100vh-80px)] items-center justify-center">

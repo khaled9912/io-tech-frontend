@@ -21,7 +21,7 @@ export default function IndexPage({
   locale,
 }: IndexPageProps) {
   return (
-    <div className="mb-4 flex min-h-[800px] min-h-screen flex-col items-center justify-center md:mb-8">
+    <div className="flex min-h-[800px] min-h-screen flex-col items-center justify-center md:mb-8">
       <IntlProvider messages={messages} locale={locale} timeZone="UTC">
         <Navbar />
         <Slider initialSlides={slides} />
